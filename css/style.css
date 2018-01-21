@@ -85,6 +85,7 @@
       border : 0px 1px 1px 1px !important;
       border-color : #808080 !important;
       letter-spacing: .5px;
+      text-align: justify;
   }  
     .panel-title a {
       text-decoration: none !important;
