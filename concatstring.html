@@ -3,7 +3,7 @@
   $(document).ready(function(){
     $("#arrow").click(function(){
         $.ajax({
-                url: "https://siddharthasharma79.github.io/siddharthasharma79.github.io/api/concat.php?str1="+$("#first_string").val()+"&str2="+$("#second_string").val(),
+                url: "http://localhost/siddharthasharma79.github.io/api/concat.php?str1="+$("#first_string").val()+"&str2="+$("#second_string").val(),
                 async : true,
                 contentType: "application/json",
                 success: function (response){
