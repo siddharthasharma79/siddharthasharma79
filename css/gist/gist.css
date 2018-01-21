@@ -24,7 +24,7 @@ body .gist .highlight {
 
 body .gist .highlight td {
     padding: 5px 15px !important;
-    line-height: 1;
+    line-height: .8;
     font-family: inherit;
     font-size: inherit;
 }

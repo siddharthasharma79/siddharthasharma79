@@ -1,0 +1,118 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+    
+
+    $("#convert").click(function(){
+        
+      $("#convert").attr("disabled", true);
+      $("#res_container").hide();
+      var query_string ="base="+$("#base_curr").val()+"&symbols="+$("#curr1").val()+","+$("#curr2").val()+","+$("#curr3").val();
+      $.ajax({
+                url: "https://api.fixer.io/latest?"+query_string+"",
+                contentType: "application/json",
+                success: function (response){
+                $("#date_label").html("Date : <label><em>"+response.date+"</em></label>");    
+                $("#base_label").html("Base Currency : <label ><em>" + response.base +"</em></label>");    
+                
+                var i = 1;  
+                for(var prop in response.rates) {
+                  
+                  if(response.rates.hasOwnProperty(prop)){
+                    $("#curr"+i+"_label").html(prop + " : " + response.rates[prop]);  
+                    i++;
+                  }
+                }
+                $("#convert").attr("disabled", false);  
+                $("#res_container").show();  
+                  
+              }
+            });
+    });
+    
+});
+</script>
+<style>
+  
+  .all-border {
+    border: 1px solid #666;
+  }
+  .gi-2x{font-size: 1.5em;}
+  .gi-3x{font-size: 3em;}
+  .gi-4x{font-size: 4em;}
+  .gi-5x{font-size: 5em;}
+  .modal-header {
+    background-color: beige;
+  }
+  .modal-header h1{
+    margin-top:-5px; 
+  }
+  .convert {
+    font-weight: bolder;
+    letter-spacing: 1.5px;
+  }
+</style>
+
+<div class="modal-header" >
+  <h1>Currency Conversion
+    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+  </h1>
+  
+  <div class="row">
+  <!-- Input Row -->
+    <div class="col-sm-3">
+    <span>Base Currency</span>  
+    <SELECT class="form-control" name="base_curr" id="base_curr"><option value="">Base Currency</option><option value="AUD">AUD</option><option value="BGN">BGN</option><option value="BRL">BRL</option><option value="CAD">CAD</option><option value="CHF">CHF</option><option value="CNY">CNY</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="HKD">HKD</option><option value="HRK">HRK</option><option value="HUF">HUF</option><option value="IDR">IDR</option><option value="ILS">ILS</option><option value="INR">INR</option><option value="JPY">JPY</option><option value="KRW">KRW</option><option value="MXN">MXN</option><option value="MYR">MYR</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PHP">PHP</option><option value="PLN">PLN</option><option value="RON">RON</option><option value="RUB">RUB</option><option value="SEK">SEK</option><option value="SGD" selected >SGD</option><option value="THB">THB</option><option value="TR">TR</option><option value="USD">USD</option><option value="ZAR">ZAR</option></SELECT>
+    </div>
+    <div class="col-sm-3">
+    <!-- Currency 1 -->
+    <span>Currency 1</span>  
+    <SELECT class="form-control" name="curr1" id="curr1"><option value="">Select Curr1</option><option value="AUD">AUD</option><option value="BGN">BGN</option><option value="BRL">BRL</option><option value="CAD">CAD</option><option value="CHF">CHF</option><option value="CNY">CNY</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="HKD">HKD</option><option value="HRK">HRK</option><option value="HUF">HUF</option><option value="IDR">IDR</option><option value="ILS">ILS</option><option value="INR">INR</option><option value="JPY">JPY</option><option value="KRW">KRW</option><option value="MXN">MXN</option><option value="MYR">MYR</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PHP">PHP</option><option value="PLN">PLN</option><option value="RON">RON</option><option value="RUB">RUB</option><option value="SEK">SEK</option><option value="SGD" >SGD</option><option value="THB">THB</option><option value="TR">TR</option><option value="USD" selected>USD</option><option value="ZAR">ZAR</option></SELECT>
+    </div>
+    <div class="col-sm-3">
+    <!-- Currency 2 -->
+    <span>Currency 2</span>    
+    <SELECT class="form-control" name="curr2" id="curr2"><option value="">Select Curr2</option><option value="AUD">AUD</option><option value="BGN">BGN</option><option value="BRL">BRL</option><option value="CAD">CAD</option><option value="CHF">CHF</option><option value="CNY">CNY</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="EUR">EUR</option><option value="GBP">GBP</option><option value="HKD" selected>HKD</option><option value="HRK">HRK</option><option value="HUF">HUF</option><option value="IDR">IDR</option><option value="ILS">ILS</option><option value="INR">INR</option><option value="JPY">JPY</option><option value="KRW">KRW</option><option value="MXN">MXN</option><option value="MYR">MYR</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PHP">PHP</option><option value="PLN">PLN</option><option value="RON">RON</option><option value="RUB">RUB</option><option value="SEK">SEK</option><option value="SGD" >SGD</option><option value="THB">THB</option><option value="TR">TR</option><option value="USD">USD</option><option value="ZAR">ZAR</option></SELECT>
+    </div>
+    <div class="col-sm-3">
+  <!-- Currency 3 -->
+  <span>Currency 3</span>      
+  <SELECT class="form-control" name="curr3" id="curr3"><option value="">Select Curr3</option><option value="AUD">AUD</option><option value="BGN">BGN</option><option value="BRL">BRL</option><option value="CAD">CAD</option><option value="CHF">CHF</option><option value="CNY">CNY</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="EUR" selected>EUR</option><option value="GBP">GBP</option><option value="HKD">HKD</option><option value="HRK">HRK</option><option value="HUF">HUF</option><option value="IDR">IDR</option><option value="ILS">ILS</option><option value="INR">INR</option><option value="JPY">JPY</option><option value="KRW">KRW</option><option value="MXN">MXN</option><option value="MYR">MYR</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PHP">PHP</option><option value="PLN">PLN</option><option value="RON">RON</option><option value="RUB">RUB</option><option value="SEK">SEK</option><option value="SGD" >SGD</option><option value="THB">THB</option><option value="TR">TR</option><option value="USD">USD</option><option value="ZAR">ZAR</option></SELECT>
+  </div>
+  </div>  
+  <!-- Submit Row -->  
+  <br/>
+  <div class="row">
+    <div class="col-sm-3">
+      <div id="convert" class="btn btn-success  btn-block">
+        <span class="convert">Convert</span>  
+      </div>
+    </div>
+  </div>
+  <br/>
+  <!-- Result Row --> 
+  <div class="row " id="res_container">
+    <div class="col-sm-12">    	
+			<div class="well well-sm">
+        <h4>
+          <div id="base_label"></div> 
+          <div id="date_label"></div>
+          <div class="row">
+            <div class="col-sm-2">
+              <div class="label label-warning" id="curr1_label"></div>
+            </div>
+            <div class="col-sm-2">
+              <div class="label label-danger" id="curr2_label"></div>  
+            </div>
+            <div class="col-sm-2">
+              <div class="label label-success" id="curr3_label"></div>  
+            </div>
+          </div>
+        </h4>  
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+
